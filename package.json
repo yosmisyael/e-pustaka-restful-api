@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "Misyael Yosevian Wiarda",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
