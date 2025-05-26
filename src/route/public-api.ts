@@ -1,0 +1,12 @@
+import express from "express";
+import {UserController} from "../controller/user-controller";
+import {BookController} from "../controller/book-controller";
+
+export const publicRouter = express.Router();
+
+publicRouter.post("/api/users", UserController.register);
+publicRouter.post("/api/users/login", UserController.login);
+publicRouter.post("/api/users/current/token", UserController.refreshToken);
+
+
+publicRouter.get("/api/books/search", BookController.searchBooks);
