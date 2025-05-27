@@ -58,6 +58,20 @@ export class UserController {
         }
     }
 
+    static async getUserById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const userId: string = req.params.userId;
+
+            const response = await UserService.getUserById(userId);
+
+            res.status(200).json({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async refreshToken(req: UserRequest, res: Response, next: NextFunction) {
         try {
             const request = req.body as RefreshTokenRequest;

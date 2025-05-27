@@ -163,4 +163,25 @@ export class UserService {
 
         return null;
     }
+
+    static async getUserById(userId: string): Promise<UserResponse> {
+        const result = await db.user.findUnique({
+            where: {
+                id: userId,
+            },
+            select: {
+                id: true,
+                email: true,
+                name: true,
+                role: true,
+            },
+        });
+
+        if (!result) {
+            throw new ResponseError(404, "User not found");
+        }
+
+        return result;
+    }
+
 }

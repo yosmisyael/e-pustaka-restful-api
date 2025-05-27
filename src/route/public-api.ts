@@ -7,6 +7,6 @@ export const publicRouter = express.Router();
 publicRouter.post("/api/users", UserController.register);
 publicRouter.post("/api/users/login", UserController.login);
 publicRouter.post("/api/users/current/token", UserController.refreshToken);
-
+publicRouter.get("/api/users/:userId", UserController.getUserById);
 
 publicRouter.get("/api/books/search", BookController.searchBooks);

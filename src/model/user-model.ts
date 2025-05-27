@@ -1,8 +1,10 @@
 import {roles, User} from "../../generated/prisma";
 
 export type UserResponse = {
+    id?: string;
     email?: string;
     name?: string;
+    role?: roles;
     accessToken?: string;
     refreshToken?: string;
 }
