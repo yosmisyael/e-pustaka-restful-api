@@ -2,7 +2,7 @@ import {z, ZodEffects, ZodType} from "zod";
 
 const directAllowedDomains = ["gmail.com", "pens.ac.id"];
 const allowedStudentDepartments = ["it", "ce", "be"];
-const studentDomainSuffix = "student.pens.ac.id";
+const studentDomainSuffix = ".student.pens.ac.id";
 
 const emailSchema = z.string()
     .min(1, "Email address is required")
