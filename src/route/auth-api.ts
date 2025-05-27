@@ -1,7 +1,7 @@
 import express, {Router} from "express";
 import {authMiddleware} from "../middleware/auth-middleware";
 import {UserController} from "../controller/user-controller";
-import {BorrowingController} from "../controller/BorrowingController";
+import {BorrowingController} from "../controller/borrowing-controller";
 
 export const authRouter: Router = express.Router();
 
