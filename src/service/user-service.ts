@@ -33,7 +33,7 @@ export class UserService {
             throw new ResponseError(400, "Email already used");
         }
 
-        request.password = await bcrypt. hash(request.password, 10);
+        request.password = await bcrypt.hash(request.password, 10);
 
         const user = await db.user.create({
             data: request as UserCreateInput,
