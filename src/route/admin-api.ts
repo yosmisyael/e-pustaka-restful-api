@@ -28,3 +28,4 @@ adminRouter.delete("/api/authors/:authorId", AuthorController.deleteAuthor);
 
 // borrowings resource
 adminRouter.patch("/api/borrowings/:borrowingId", BorrowingController.returnBorrowedBook);
+adminRouter.get("/api/borrowings/stats", BorrowingController.getLibraryStats);

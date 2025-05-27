@@ -41,4 +41,30 @@ export class BorrowingController {
             next(err);
         }
     }
+
+    static async getBorrowedBookHistory(req: UserRequest, res: Response, next: NextFunction) {
+        try {
+            const userId: string = req.params.userId;
+
+            const response = await BorrowingService.getLoansByUserId(userId);
+
+            res.status(200).send({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async getLibraryStats(req: UserRequest, res: Response, next: NextFunction) {
+        try {
+            const response = await BorrowingService.getLoansData();
+
+            res.status(200).send({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
 }

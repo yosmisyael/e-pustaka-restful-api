@@ -14,6 +14,13 @@ export type BorrowResponse = {
     userId: string;
 }
 
+export type StatsResponse = {
+    booksTotal: number,
+    borrowedTotal: number,
+    averageBorrowedBooksPerMonth: number,
+    notReturnedCount: number,
+}
+
 export interface PrismaBorrowResult {
     userId: string;
     bookId: string;

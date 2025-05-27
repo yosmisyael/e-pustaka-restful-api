@@ -1,4 +1,10 @@
-import {BorrowRequest, BorrowResponse, PrismaBorrowResult, toBorrowResponse} from "../model/borrowing-model";
+import {
+    BorrowRequest,
+    BorrowResponse,
+    PrismaBorrowResult,
+    StatsResponse,
+    toBorrowResponse
+} from "../model/borrowing-model";
 import {db} from "../application/database";
 import {Validation} from "../validation/validation";
 import {BorrowingValidation} from "../validation/borrowing-validation";
@@ -25,6 +31,76 @@ export class BorrowingService {
                 returnedDate: null,
             }
         });
+    }
+
+    static async getLoansByUserId(userId: string) {
+        return db.usersOnBooks.findMany({
+            where: {
+                userId,
+            },
+            include: {
+                book: {
+                    include: {
+                        author: {
+                            select: { name: true },
+                        },
+                        category: {
+                            select: { name: true },
+                        },
+                    },
+                },
+            },
+            orderBy: {
+                borrowDate: 'desc',
+            },
+        })
+    }
+
+    static async getLoansData(): Promise<StatsResponse> {
+        const [
+            booksTotal,
+            borrowedTotal,
+            allBorrowingsRecord,
+            overdueAndNotReturnedCount
+        ] = await db.$transaction([
+            db.book.count({}),
+            db.usersOnBooks.count({}),
+            db.usersOnBooks.findMany({
+                select: {
+                    borrowDate: true,
+                },
+            }),
+            db.usersOnBooks.count({
+                where: {
+                    returnedDate: null,
+                    returnDate: {
+                        lt: new Date(),
+                    },
+                },
+            }),
+        ]);
+
+        const monthlyCounts: { [yearMonth: string]: number } = {};
+
+        allBorrowingsRecord.forEach(record => {
+             const year = record.borrowDate.getFullYear();
+             const month = record.borrowDate.getMonth() + 1;
+             const yearMonthKey = `${year}-${String(month).padStart(2, '0')}`;
+             monthlyCounts[yearMonthKey] = (monthlyCounts[yearMonthKey] || 0) + 1;
+        });
+
+        const distinctMonthsWithLoans = Object.keys(monthlyCounts).length;
+
+        const totalLoans = allBorrowingsRecord.length;
+        const average = distinctMonthsWithLoans !== 0 ? totalLoans / distinctMonthsWithLoans : 0;
+
+        return {
+            booksTotal,
+            borrowedTotal,
+            averageBorrowedBooksPerMonth: average,
+            notReturnedCount: overdueAndNotReturnedCount,
+        }
+
     }
 
     static async save(req: BorrowRequest): Promise<BorrowResponse> {
