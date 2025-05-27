@@ -33,6 +33,20 @@ export class AuthorController {
         }
     }
 
+    static async getAuthorById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const authorId: number = Number(req.params.authorId);
+
+            const response = await AuthorService.getAuthorById(authorId);
+
+            res.status(200).send({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async deleteAuthor(req: Request, res: Response, next: NextFunction) {
         try {
             const authorId: number = Number(req.params.authorId);

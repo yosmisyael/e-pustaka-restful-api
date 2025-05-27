@@ -28,6 +28,22 @@ export class AuthorService {
         return countRecord > 0;
     }
 
+    static async getAuthorById(authorId: number): Promise<AuthorResponse> {
+        const isAuthorExists = await this.verifyAuthorExist(authorId);
+
+        if (!isAuthorExists) {
+            throw new ResponseError(404, "Author not found");
+        }
+
+        const result = await db.author.findUnique({
+            where: {
+                id: authorId,
+            },
+        });
+
+        return result!;
+    }
+
     static async save(req: AuthorRequest): Promise<AuthorResponse> {
         const request: AuthorRequest = Validation.validate(AuthorValidation.REGISTER, req);
 
