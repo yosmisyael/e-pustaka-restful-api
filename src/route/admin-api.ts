@@ -4,7 +4,7 @@ import {authMiddleware} from "../middleware/auth-middleware";
 import {CategoryController} from "../controller/category-controller";
 import {BookController} from "../controller/book-controller";
 import {AuthorController} from "../controller/author-controller";
-import {BorrowingController} from "../controller/BorrowingController";
+import {BorrowingController} from "../controller/borrowing-controller";
 
 export const adminRouter: Router = express.Router();
 
