@@ -6,6 +6,20 @@ import {UserInfo} from "../model/user-model";
 import {BorrowingService} from "../service/borrowing-service";
 
 export class BorrowingController {
+    static async getBorrowingRecordById(req: UserRequest, res: Response, next: NextFunction) {
+        try {
+            const borrowingId: number = Number(req.params.borrowingId);
+
+            const response = await BorrowingService.getBorrowignById(borrowingId);
+
+            res.status(200).send({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async addBorrowRecord(req: UserRequest, res: Response, next: NextFunction) {
         try {
             const user: UserInfo = req.user!;

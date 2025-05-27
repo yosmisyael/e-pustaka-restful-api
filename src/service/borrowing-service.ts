@@ -24,6 +24,26 @@ export class BorrowingService {
         }
     }
 
+    static async getBorrowignById(borrowingId: number) {
+        const countRecord = await db.usersOnBooks.count({
+            where: {
+                id: borrowingId,
+            },
+        });
+
+        if (countRecord === 0) {
+            throw new ResponseError(404, "Borrowing record not found");
+        }
+
+        const result = await db.usersOnBooks.findUnique({
+            where: {
+                id: borrowingId,
+            },
+        });
+
+        return result!;
+    }
+
     static async getCurrentLoan(bookId: string) {
         return db.usersOnBooks.findFirst({
             where: {

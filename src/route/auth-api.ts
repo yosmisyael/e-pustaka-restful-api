@@ -12,4 +12,6 @@ authRouter.delete("/api/users/current", UserController.logout);
 
 authRouter.post("/api/borrowings", BorrowingController.addBorrowRecord);
 authRouter.get("/api/borrowings/history/:userId", BorrowingController.getBorrowedBookHistory);
+authRouter.get("/api/borrowings/:borrowingId", BorrowingController.getBorrowingRecordById);
+
 
