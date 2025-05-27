@@ -8,6 +8,7 @@ export type UserResponse = {
 }
 
 export type RegisterUserRequest = {
+    id: string;
     email: string;
     name: string;
     password: string;
