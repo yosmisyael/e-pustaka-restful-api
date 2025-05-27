@@ -65,7 +65,7 @@ Response Body (Failed) :
 Endpoint : POST /api/books
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [Administrator Access Token]
 
 Request Body :
 
@@ -105,7 +105,7 @@ Response Body (Failed) :
 ## Update Book
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [Administrator Access Token]
 
 
 Endpoint : PATCH /api/books/:bookId
@@ -148,7 +148,7 @@ Response Body (Failed) :
 ## Delete Book
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [Administrator Access Token]
 
 
 Endpoint : DELETE /api/books/:bookId

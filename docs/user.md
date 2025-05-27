@@ -69,7 +69,7 @@ Response Body (Failed) :
 Endpoint : PATCH /api/users/current
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [User Access Token]
 
 Request Body :
 
@@ -134,7 +134,7 @@ Response Body (Failed) :
 Endpoint : DELETE /api/users/current
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [User Access Token]
 
 Response Body (Success) :
 

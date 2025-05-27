@@ -5,7 +5,7 @@ The category resource can be managed (action: CREATE, UPDATE, DELETE) by adminis
 Endpoint : POST /api/categories
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [Administrator Access Token]
 
 Request Body :
 
@@ -38,6 +38,10 @@ Response Body (Failed) :
 
 Endpoint : DELETE /api/categories/:categoryId
 
+Request Header :
+- Authorization : Bearer [Administrator Access Token]
+
+
 Response Body (Success) :
 
 ```json
@@ -59,7 +63,7 @@ Response Body (Failed) :
 Endpoint : PATCH /api/categories/:categoryId
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [Administrator Access Token]
 
 Request Body :
 

@@ -5,7 +5,7 @@
 Endpoint : POST /api/borrowings
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [User or Administrator Access Token]
 
 Request Body :
 
@@ -46,7 +46,7 @@ Response Body (Failed) :
 This only can be accessed by `administrator` role.
 
 Request Header :
-- Authorization : Bearer [Access Token]
+- Authorization : Bearer [Administrator Access Token]
 
 Endpoint : PATCH /api/borrowings/:borrowingId
 
@@ -65,5 +65,77 @@ Response Body (Failed) :
 ```json
 {
   "error": "Corresponding borrow record is not found"
+}
+```
+
+## Get User Borrowing History
+
+Endpoint : POST /api/borrowings/history/:userId
+
+Request Header :
+- Authorization : Bearer [User Access Token]
+
+Response Body (Success) :
+
+```json
+{
+  "data": [
+    {
+      "id": 123,
+      "borrowDate": "...",
+      "returnDate": "...",
+      "returnedDate": "...",
+      "book": {
+        "isbn": "string",
+        "title": "string",
+        "description": "string",
+        "year": "number",
+        "authorId": "number",
+        "cover": "string",
+        "author": {
+          "name": "string"
+        },
+        "category": {
+          "name": "string"
+        }
+      }
+    }
+  ]
+}
+```
+
+Response Body (Failed) :
+
+```json
+{
+  "error" : "Unauthorized"
+}
+```
+
+## Get Library Stats
+
+Endpoint : POST /api/borrowings/history/:userId
+
+Request Header :
+- Authorization : Bearer [Admin Access Token]
+
+Response Body (Success) :
+
+```json
+{
+  "data": {
+    "booksTotal": "number",
+    "borrowedTotal": "number",
+    "averageBorrowedBooksPerMonth": "number",
+    "notReturnedCount": "number"
+  }
+}
+```
+
+Response Body (Failed) :
+
+```json
+{
+  "error" : "Unauthorized"
 }
 ```
