@@ -38,7 +38,11 @@ export class BorrowingService {
             where: {
                 userId,
             },
-            include: {
+            select: {
+                id: true,
+                borrowDate: true,
+                returnDate: true,
+                returnedDate: true,
                 book: {
                     include: {
                         author: {
@@ -53,7 +57,7 @@ export class BorrowingService {
             orderBy: {
                 borrowDate: 'desc',
             },
-        })
+        });
     }
 
     static async getLoansData(): Promise<StatsResponse> {
