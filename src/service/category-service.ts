@@ -33,6 +33,22 @@ export class CategoryService {
         return count > 0;
     }
 
+    static async getCategoryById(categoryId: number): Promise<CategoryResponse> {
+        const isCategoryExists = await this.verifyCategoryExist(categoryId);
+
+        if (!isCategoryExists) {
+            throw new ResponseError(404, `Category with id ${categoryId} not found`);
+        }
+
+        const result = await db.category.findUnique({
+            where: {
+                id: categoryId,
+            },
+        });
+
+        return result!;
+    }
+
     static async save(req: CategoryRequest): Promise<CategoryResponse> {
         const request: CategoryRequest = Validation.validate(CategoryValidation.CREATE, req);
 

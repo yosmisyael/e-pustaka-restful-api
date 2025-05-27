@@ -2,6 +2,7 @@ import express from "express";
 import {UserController} from "../controller/user-controller";
 import {BookController} from "../controller/book-controller";
 import {AuthorController} from "../controller/author-controller";
+import {CategoryController} from "../controller/category-controller";
 
 export const publicRouter = express.Router();
 
@@ -17,4 +18,6 @@ publicRouter.get("/api/books/search", BookController.searchBooks);
 publicRouter.get("/api/authors/:authorId", AuthorController.getAuthorById);
 
 // categories resources
+publicRouter.get("/api/categories/:categoryId", CategoryController.getCategoryById);
+
 

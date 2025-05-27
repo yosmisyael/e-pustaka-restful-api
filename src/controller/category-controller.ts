@@ -33,6 +33,20 @@ export class CategoryController {
         }
     }
 
+    static async getCategoryById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const categoryId: number = Number(req.params.categoryId);
+
+            const response: CategoryResponse = await CategoryService.getCategoryById(categoryId);
+
+            res.status(200).json({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async deleteCategory(req: Request, res: Response, next: NextFunction) {
         try {
             const categoryId: number = Number(req.params.categoryId);
