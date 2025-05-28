@@ -56,6 +56,7 @@ export interface PaginatedBookResponse {
 
 export interface SearchBooksOptions {
     bookId?: string;
+    year?: number;
     title?: string;
     authorId?: number;
     authorName?: string;

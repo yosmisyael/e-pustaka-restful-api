@@ -10,7 +10,6 @@ import {BookValidation} from "../validation/book-validation";
 import {db} from "../application/database";
 import {ResponseError} from "../error/response-error";
 import {Prisma} from "../../generated/prisma";
-import BookWhereInput = Prisma.BookWhereInput;
 
 export class BookService {
     static async verifyBookExist(bookId: string) {
@@ -23,26 +22,6 @@ export class BookService {
         if (result === 0) {
             throw new ResponseError(404, "Book not found");
         }
-    }
-
-    static async getBookById(bookId: string) {
-        return db.book.findUnique({
-            where: {
-                isbn: bookId,
-            },
-            include: {
-                author: {
-                    select: {
-                        name: true,
-                    },
-                },
-                category: {
-                    select: {
-                        name: true,
-                    },
-                },
-            },
-        });
     }
 
     static async searchBooks(
@@ -61,6 +40,11 @@ export class BookService {
         if (options.title) {
             whereClause.title = {
                 contains: options.title,
+            };
+        }
+        if (options.year) {
+            whereClause.year = {
+                equals: options.year,
             };
         }
         if (options.authorId) {
