@@ -19,5 +19,6 @@ publicRouter.get("/api/authors/:authorId", AuthorController.getAuthorById);
 
 // categories resources
 publicRouter.get("/api/categories/:categoryId", CategoryController.getCategoryById);
+publicRouter.get("/api/categories", CategoryController.getAllCategories);
 
 

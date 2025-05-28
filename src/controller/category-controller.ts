@@ -47,6 +47,18 @@ export class CategoryController {
         }
     }
 
+    static async getAllCategories(req: Request, res: Response, next: NextFunction) {
+        try {
+            const response: CategoryResponse[] = await CategoryService.getAllCategories();
+
+            res.status(200).json({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async deleteCategory(req: Request, res: Response, next: NextFunction) {
         try {
             const categoryId: number = Number(req.params.categoryId);
