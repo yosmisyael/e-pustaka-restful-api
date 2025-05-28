@@ -44,6 +44,10 @@ export class AuthorService {
         return result!;
     }
 
+    static async getAllAuthors(): Promise<AuthorResponse[]> {
+        return db.author.findMany({});
+    }
+
     static async save(req: AuthorRequest): Promise<AuthorResponse> {
         const request: AuthorRequest = Validation.validate(AuthorValidation.REGISTER, req);
 

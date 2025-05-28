@@ -15,10 +15,11 @@ publicRouter.get("/api/users/:userId", UserController.getUserById);
 publicRouter.get("/api/books/search", BookController.searchBooks);
 
 // authors resources
+publicRouter.get("/api/authors", AuthorController.getAllAuthors);
 publicRouter.get("/api/authors/:authorId", AuthorController.getAuthorById);
 
 // categories resources
-publicRouter.get("/api/categories/:categoryId", CategoryController.getCategoryById);
 publicRouter.get("/api/categories", CategoryController.getAllCategories);
+publicRouter.get("/api/categories/:categoryId", CategoryController.getCategoryById);
 
 

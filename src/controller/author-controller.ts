@@ -47,6 +47,18 @@ export class AuthorController {
         }
     }
 
+    static async getAllAuthors(req: Request, res: Response, next: NextFunction) {
+        try {
+            const response: AuthorResponse[] = await AuthorService.getAllAuthors();
+
+            res.status(200).send({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async deleteAuthor(req: Request, res: Response, next: NextFunction) {
         try {
             const authorId: number = Number(req.params.authorId);
