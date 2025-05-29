@@ -24,7 +24,7 @@ export class BorrowingService {
         }
     }
 
-    static async getBorrowignById(borrowingId: number) {
+    static async getBorrowingById(borrowingId: number) {
         const countRecord = await db.usersOnBooks.count({
             where: {
                 id: borrowingId,
@@ -42,6 +42,38 @@ export class BorrowingService {
         });
 
         return result!;
+    }
+
+    static async getAllBorrowingList() {
+        return db.usersOnBooks.findMany({
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        role: true,
+                        email: true,
+                    },
+                },
+                book: {
+                    select: {
+                        isbn: true,
+                        title: true,
+                        year: true,
+                        description: true,
+                        language: true,
+                        pages: true,
+                        cover: true,
+                        author: {
+                            select: { name: true },
+                        },
+                        category: {
+                            select: { name: true },
+                        },
+                    }
+                },
+            },
+        });
     }
 
     static async getCurrentLoan(bookId: string) {

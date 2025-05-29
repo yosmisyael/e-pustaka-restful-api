@@ -27,5 +27,6 @@ adminRouter.patch("/api/authors/:authorId", AuthorController.updateAuthor);
 adminRouter.delete("/api/authors/:authorId", AuthorController.deleteAuthor);
 
 // borrowings resource
-adminRouter.patch("/api/borrowings/:borrowingId", BorrowingController.returnBorrowedBook);
+adminRouter.get("/api/borrowings", BorrowingController.getBorrowingList);
 adminRouter.get("/api/borrowings/stats", BorrowingController.getLibraryStats);
+adminRouter.patch("/api/borrowings/:borrowingId", BorrowingController.returnBorrowedBook);

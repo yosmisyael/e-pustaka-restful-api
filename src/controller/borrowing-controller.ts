@@ -10,7 +10,19 @@ export class BorrowingController {
         try {
             const borrowingId: number = Number(req.params.borrowingId);
 
-            const response = await BorrowingService.getBorrowignById(borrowingId);
+            const response = await BorrowingService.getBorrowingById(borrowingId);
+
+            res.status(200).send({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async getBorrowingList(req: UserRequest, res: Response, next: NextFunction) {
+        try {
+            const response = await BorrowingService.getAllBorrowingList();
 
             res.status(200).send({
                 data: response,
