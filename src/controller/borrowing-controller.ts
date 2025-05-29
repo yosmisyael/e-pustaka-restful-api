@@ -4,6 +4,7 @@ import {UserRequest} from "../type/user-request";
 import {roles} from "../../generated/prisma";
 import {UserInfo} from "../model/user-model";
 import {BorrowingService} from "../service/borrowing-service";
+import {BookService} from "../service/book-service";
 
 export class BorrowingController {
     static async getBorrowingRecordById(req: UserRequest, res: Response, next: NextFunction) {
@@ -56,7 +57,9 @@ export class BorrowingController {
         try {
             const borrowingId: number = Number(req.params.borrowingId);
 
-            await BorrowingService.update(borrowingId);
+            const { bookId } = await BorrowingService.update(borrowingId);
+
+            await BookService.update(bookId, { isAvailable: true });
 
             res.status(200).send({
                 data: {

@@ -244,7 +244,7 @@ export class BorrowingService {
         return toBorrowResponse(result);
     }
 
-    static async update(borrowingId: number): Promise<void> {
+    static async update(borrowingId: number) {
         const borrowingRecord = await db.usersOnBooks.count({
             where: {
                 id: borrowingId,
@@ -255,13 +255,17 @@ export class BorrowingService {
             throw new ResponseError(404, "Corresponding borrow record is not found");
         }
 
-        await db.usersOnBooks.update({
+        return db.usersOnBooks.update({
             where: {
                 id: borrowingId,
             },
             data: {
                 returnedDate: new Date(),
             },
+            select: {
+                bookId: true,
+                userId: true,
+            }
         });
     }
 }
