@@ -22,6 +22,7 @@ export type StatsResponse = {
 }
 
 export interface PrismaBorrowResult {
+    id: number;
     userId: string;
     bookId: string;
     borrowDate: Date;
@@ -41,4 +42,5 @@ export const toBorrowResponse = (data: PrismaBorrowResult) => ({
     returnDate: data.returnDate,
     name: data.user.name,
     userId: data.userId,
+    id: data.id,
 });

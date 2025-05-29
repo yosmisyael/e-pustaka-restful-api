@@ -214,6 +214,7 @@ export class BorrowingService {
                 returnedDate: null,
             },
             select: {
+                id: true,
                 userId: true,
                 bookId: true,
                 borrowDate: true,
