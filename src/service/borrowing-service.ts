@@ -120,7 +120,11 @@ export class BorrowingService {
             overdueAndNotReturnedCount
         ] = await db.$transaction([
             db.book.count({}),
-            db.usersOnBooks.count({}),
+            db.usersOnBooks.findMany({
+                where: {
+                    returnedDate: null,
+                },
+            }),
             db.usersOnBooks.findMany({
                 select: {
                     borrowDate: true,
@@ -148,11 +152,21 @@ export class BorrowingService {
         const distinctMonthsWithLoans = Object.keys(monthlyCounts).length;
 
         const totalLoans = allBorrowingsRecord.length;
+
         const average = distinctMonthsWithLoans !== 0 ? totalLoans / distinctMonthsWithLoans : 0;
+
+        let countActiveBorrow = 0;
+
+        borrowedTotal.forEach(record => {
+            if (record.borrowDate && record.returnDate &&
+                record.borrowDate.getTime() < record.returnDate.getTime()) {
+                countActiveBorrow++;
+            }
+        });
 
         return {
             booksTotal,
-            borrowedTotal,
+            borrowedTotal: countActiveBorrow,
             averageBorrowedBooksPerMonth: average,
             notReturnedCount: overdueAndNotReturnedCount,
         }
