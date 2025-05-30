@@ -47,6 +47,24 @@ export class CategoryController {
         }
     }
 
+    static async searchCategory(req: Request, res: Response, next: NextFunction) {
+        try {
+            let name = req.query.name;
+
+            if (!name || typeof name !== 'string') {
+                name = "";
+            }
+
+            const response: CategoryResponse[] = await CategoryService.getCategoryByName(name);
+
+            res.status(200).json({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async getAllCategories(req: Request, res: Response, next: NextFunction) {
         try {
             const response: CategoryResponse[] = await CategoryService.getAllCategories();

@@ -12,6 +12,7 @@ adminRouter.use(authMiddleware);
 adminRouter.use(authorizeRoleMiddleware)
 
 // categories resource
+adminRouter.get("/api/categories/search", CategoryController.searchCategory);
 adminRouter.post("/api/categories", CategoryController.addCategory);
 adminRouter.patch("/api/categories/:categoryId", CategoryController.updateCategory);
 adminRouter.delete("/api/categories/:categoryId", CategoryController.deleteCategory);

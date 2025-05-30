@@ -53,6 +53,14 @@ export class CategoryService {
         return db.category.findMany({});
     }
 
+    static async getCategoryByName(name: string) {
+        return db.category.findMany({
+            where: {
+                name: { contains: name },
+            },
+        });
+    }
+
     static async save(req: CategoryRequest): Promise<CategoryResponse> {
         const request: CategoryRequest = Validation.validate(CategoryValidation.CREATE, req);
 
