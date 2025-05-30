@@ -11,24 +11,24 @@ export const adminRouter: Router = express.Router();
 adminRouter.use(authMiddleware);
 adminRouter.use(authorizeRoleMiddleware)
 
-// categories resource
-adminRouter.get("/api/categories/search", CategoryController.searchCategory);
-adminRouter.post("/api/categories", CategoryController.addCategory);
-adminRouter.patch("/api/categories/:categoryId", CategoryController.updateCategory);
-adminRouter.delete("/api/categories/:categoryId", CategoryController.deleteCategory);
+// categories
+adminRouter.get("/categories/search", CategoryController.searchCategory);
+adminRouter.post("/categories", CategoryController.addCategory);
+adminRouter.patch("/categories/:categoryId", CategoryController.updateCategory);
+adminRouter.delete("/categories/:categoryId", CategoryController.deleteCategory);
 
-// books resource
-adminRouter.post("/api/books", BookController.addBook);
-adminRouter.patch("/api/books/:bookId", BookController.updateBook);
-adminRouter.delete("/api/books/:bookId", BookController.deleteBook);
+// books
+adminRouter.post("/books", BookController.addBook);
+adminRouter.patch("/books/:bookId", BookController.updateBook);
+adminRouter.delete("/books/:bookId", BookController.deleteBook);
 
-// authors resource
-adminRouter.post("/api/authors", AuthorController.addAuthor);
-adminRouter.patch("/api/authors/:authorId", AuthorController.updateAuthor);
-adminRouter.delete("/api/authors/:authorId", AuthorController.deleteAuthor);
-adminRouter.get("/api/authors/search", AuthorController.searchAuthor);
+// authors
+adminRouter.post("/authors", AuthorController.addAuthor);
+adminRouter.patch("/authors/:authorId", AuthorController.updateAuthor);
+adminRouter.delete("/authors/:authorId", AuthorController.deleteAuthor);
+adminRouter.get("/authors/search", AuthorController.searchAuthor);
 
-// borrowings resource
-adminRouter.get("/api/borrowings", BorrowingController.getBorrowingList);
-adminRouter.get("/api/borrowings/library/stats", BorrowingController.getLibraryStats);
-adminRouter.patch("/api/borrowings/:borrowingId", BorrowingController.returnBorrowedBook);
+// borrowings
+adminRouter.get("/borrowings", BorrowingController.getBorrowingList);
+adminRouter.get("/borrowings/library/stats", BorrowingController.getLibraryStats);
+adminRouter.patch("/borrowings/:borrowingId", BorrowingController.returnBorrowedBook);

@@ -6,20 +6,17 @@ import {CategoryController} from "../controller/category-controller";
 
 export const publicRouter = express.Router();
 
-publicRouter.post("/api/users", UserController.register);
-publicRouter.post("/api/users/login", UserController.login);
-publicRouter.post("/api/users/current/token", UserController.refreshToken);
-publicRouter.get("/api/users/:userId", UserController.getUserById);
+publicRouter.post("/users", UserController.register);
+publicRouter.post("/users/login", UserController.login);
+publicRouter.post("/users/current/token", UserController.refreshToken);
+publicRouter.get("/users/:userId", UserController.getUserById);
 
-// books resources
-publicRouter.get("/api/books/search", BookController.searchBooks);
+publicRouter.get("/books/search", BookController.searchBooks);
 
-// authors resources
-publicRouter.get("/api/authors", AuthorController.getAllAuthors);
-publicRouter.get("/api/authors/:authorId", AuthorController.getAuthorById);
+publicRouter.get("/authors", AuthorController.getAllAuthors);
+publicRouter.get("/authors/:authorId", AuthorController.getAuthorById);
 
-// categories resources
-publicRouter.get("/api/categories", CategoryController.getAllCategories);
-publicRouter.get("/api/categories/:categoryId", CategoryController.getCategoryById);
+publicRouter.get("/categories", CategoryController.getAllCategories);
+publicRouter.get("/categories/:categoryId", CategoryController.getCategoryById);
 
 
