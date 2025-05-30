@@ -27,7 +27,7 @@ model User {
   password     String
   role         roles
   isVerified   Boolean?       @map("is_verified")
-  token        String?        @db.VarChar(255)
+  token        String?        @db.VarChar(500)
   UsersOnBooks UsersOnBooks[]
 
   @@map("users")
