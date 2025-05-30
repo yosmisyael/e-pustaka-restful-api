@@ -28,6 +28,14 @@ export class AuthorService {
         return countRecord > 0;
     }
 
+    static async getAuthorByName(name: string) {
+        return db.author.findMany({
+            where: {
+                name: { contains: name },
+            },
+        });
+    }
+
     static async getAuthorById(authorId: number): Promise<AuthorResponse> {
         const isAuthorExists = await this.verifyAuthorExist(authorId);
 

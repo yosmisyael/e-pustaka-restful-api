@@ -17,6 +17,24 @@ export class AuthorController {
         }
     }
 
+    static async searchAuthor(req: Request, res: Response, next: NextFunction) {
+        try {
+            let name = req.query.name;
+
+            if (!name || typeof name !== 'string') {
+                name = "";
+            }
+
+            const response = await AuthorService.getAuthorByName(name);
+
+            res.status(200).send({
+                data: response,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async updateAuthor(req: Request, res: Response, next: NextFunction) {
         try {
             const authorId: number = Number(req.params.authorId);

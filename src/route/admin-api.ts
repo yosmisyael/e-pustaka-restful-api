@@ -25,6 +25,7 @@ adminRouter.delete("/api/books/:bookId", BookController.deleteBook);
 adminRouter.post("/api/authors", AuthorController.addAuthor);
 adminRouter.patch("/api/authors/:authorId", AuthorController.updateAuthor);
 adminRouter.delete("/api/authors/:authorId", AuthorController.deleteAuthor);
+adminRouter.get("/api/authors/search", AuthorController.searchAuthor);
 
 // borrowings resource
 adminRouter.get("/api/borrowings", BorrowingController.getBorrowingList);
