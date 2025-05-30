@@ -111,7 +111,15 @@ export class BookService {
     static async save(req: CreateBookRequest): Promise<BookResponse> {
         const request = Validation.validate(BookValidation.CREATE, req);
 
-        await this.verifyBookExist(request.isbn);
+        const recordCount = await db.book.count({
+            where: {
+                isbn: req.isbn,
+            },
+        });
+
+        if (recordCount !== 0) {
+            throw new ResponseError(400, "Book already added");
+        }
 
         const result = await db.book.create({
             data: {
