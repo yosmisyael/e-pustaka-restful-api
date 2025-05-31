@@ -11,7 +11,7 @@ export class BookValidation {
         language: z.string().min(1, "Language must not be empty"),
         category: z.string().min(1, "Category must not be empty").optional(),
         author: z.string().min(1, "Author must not be empty"),
-        publisher: z.string().min(1, "Publisher must not be empty"),
+        publisher: z.string().min(1, "Publisher must not be empty").optional(),
     });
 
     static readonly UPDATE: ZodType = z.object({
