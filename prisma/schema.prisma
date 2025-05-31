@@ -52,7 +52,7 @@ model Author {
 model Book {
   isbn        String  @id
   title       String
-  description String @db.Text()
+  description String  @db.Text()
   year        Int
   authorId    Int
   cover       String?
