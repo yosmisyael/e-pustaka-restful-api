@@ -130,6 +130,7 @@ export class BookService {
                 pages: req.pages,
                 language: req.language,
                 cover: req.cover,
+                publisher: req.publisher,
                 author: {
                     connectOrCreate: {
                         where: { name: req.author },

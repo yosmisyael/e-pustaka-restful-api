@@ -10,7 +10,7 @@ export type CreateBookRequest = {
     language: string;
     category: string;
     author: string;
-    publisher: string;
+    publisher?: string;
     isAvailable: boolean;
 }
 
