@@ -121,34 +121,6 @@ export class BookService {
             throw new ResponseError(400, "Book already added");
         }
 
-        const result = await db.book.create({
-            data: {
-                isbn: req.isbn,
-                title: req.title,
-                description: req.description,
-                year: req.year,
-                pages: req.pages,
-                language: req.language,
-                cover: req.cover,
-                publisher: req.publisher,
-                author: {
-                    connectOrCreate: {
-                        where: { name: req.author },
-                        create: { name: req.author },
-                    }
-                },
-                category: {
-                    connectOrCreate: {
-                        where: { name: req.category },
-                        create: { name: req.category },
-                    }
-                }
-            },
-            select: {
-                isbn: true,
-                title: true,
-            },
-        });
 
         return result as BookResponse;
     }
