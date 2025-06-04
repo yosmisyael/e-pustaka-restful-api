@@ -1,25 +1,29 @@
-# Halo Fajar
+# E-Pustaka
+Final project for web programming workshop course, 2nd semester IT EEPIS
 
 ## Install
 1. clone this repo
-2. install deps 
-```shell
+```bash
+git clone https://github.com/yosmisyael/e-pustaka-restful-api.git
+```
+2. install all deps 
+```bash
 npm install
 ```
 3. run db migration 
-```shell
+```bash
 npx prisma db push
 npx prisma migrate dev
 ```
 4. build app
-```shell
+```bash
 npm run build
 ```
 5. add env and configure it
-```shell
+```bash
 cp .env.example .env
 ```
 6. run app
-```shell
+```bash
 npm run start
 ```
